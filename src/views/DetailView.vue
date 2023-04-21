@@ -24,7 +24,7 @@ const allFigurines = ref([]);
 const fetchAllFigurines = async () => {
     const figurines = await axios.get('https://www.amiiboapi.com/api/amiibo/')
     console.log(figurines.data)
-    allFigurines.value = figurines.data
+    allFigurines.value = figurines.data.amiibo
 }
 onBeforeMount(async () => {
     await fetchAllFigurines()
@@ -68,7 +68,7 @@ onBeforeMount(async () => {
 
                     <!-- Content -->
                     <article class="box post">
-                        <a href="#" class="featured"><img src="figurines.image" alt="" /></a>
+                        <a href="#" class="featured"><img :src="figurines.image" alt="" /></a>
                         <header>
                             <h2>{{ figurines.character }}</h2>
                             <p>{{ figurines.type }}</p>

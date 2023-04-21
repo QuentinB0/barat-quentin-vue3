@@ -29,7 +29,7 @@ const allFigurines = ref([]);
 const fetchAllFigurines = async () => {
     const figurines = await axios.get('https://www.amiiboapi.com/api/amiibo/')
     console.log(figurines.data)
-    allFigurines.value = figurines.data
+    allFigurines.value = figurines.data.amiibo
 }
 onBeforeMount(async () => {
     await fetchAllFigurines()
@@ -55,7 +55,7 @@ onBeforeMount(async () => {
                         <th>Game Series</th>
                         <th>Action</th>
                     </tr>
-                    <tr v-for="figurines in allFigurines" :key="figurines.id">
+                    <tr v-for="figurines in allFigurines" :key="figurines.tail">
                         <td>{{ figurines.character }}</td>
                         <td>{{ figurines.gameSeries }}</td>
                         <td><button @click="viewBtn"></button></td>
